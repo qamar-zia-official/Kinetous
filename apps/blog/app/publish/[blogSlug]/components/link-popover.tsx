@@ -1,0 +1,128 @@
+"use client";
+
+import { useState } from "react";
+
+import { type Editor } from "@tiptap/react";
+
+import { Link2, Trash2, ExternalLink } from "lucide-react";
+
+import { Button } from "@repo/ui/button";
+import { Input } from "@repo/ui/input";
+
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@repo/ui/popover";
+import { Toolbar } from "@base-ui/react";
+
+export default function LinkPopover({ editor }: { editor: Editor }) {
+    const [url, setUrl] = useState("");
+
+    const active = editor.isActive("link");
+    const [lastKey, setLastKey] = useState<string | null>(null);
+
+    const syncKey = active ? (editor.getAttributes("link").href ?? "") : "";
+    if (lastKey !== syncKey) {
+        setLastKey(syncKey);
+        setUrl(syncKey);
+    }
+
+    function applyLink() {
+        const value = url.trim();
+
+        if (!value) {
+            editor.chain().focus().unsetLink().run();
+            return;
+        }
+
+        const href =
+            value.startsWith("http://") || value.startsWith("https://")
+                ? value
+                : `https://${value}`;
+
+        editor
+            .chain()
+            .focus()
+            .extendMarkRange("link")
+            .setLink({
+                href,
+                target: "_blank",
+            })
+            .run();
+    }
+
+    function removeLink() {
+        editor.chain().focus().unsetLink().run();
+        setUrl("");
+    }
+
+    return (
+        <Popover>
+            <PopoverTrigger
+                render={
+                    <Toolbar.Button render={<Button variant="secondary" />}>
+                        <Link2 className="size-4" />
+                    </Toolbar.Button>
+                }
+            />
+
+            <PopoverContent align="start" className="w-96 space-y-4">
+                <div className="space-y-1">
+                    <h4 className="text-sm font-semibold">Link</h4>
+
+                    <p className="text-xs text-muted-foreground">
+                        Paste a URL to create or edit a hyperlink.
+                    </p>
+                </div>
+
+                <Input
+                    autoFocus
+                    placeholder="https://example.com"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                            applyLink();
+                        }
+                    }}
+                />
+
+                <div className="flex justify-between">
+                    <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={removeLink}
+                        disabled={!active}
+                    >
+                        <Trash2 className="mr-2 size-4" />
+                        Remove
+                    </Button>
+
+                    <div className="flex gap-2">
+                        {active && (
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() =>
+                                    window.open(
+                                        editor.getAttributes("link").href,
+                                        "_blank",
+                                    )
+                                }
+                            >
+                                <ExternalLink className="mr-2 size-4" />
+                                Open
+                            </Button>
+                        )}
+
+                        <Button size="sm" onClick={applyLink}>
+                            Save
+                        </Button>
+                    </div>
+                </div>
+            </PopoverContent>
+        </Popover>
+    );
+}
