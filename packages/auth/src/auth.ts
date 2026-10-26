@@ -6,34 +6,34 @@ import { Resend } from "resend";
 const mail = new Resend(process.env.RESEND_API_KEY!);
 
 export const auth = betterAuth({
-    trustedOrigins: ["https://*.kinetous.com", "https://kinetous.com"],
-    appName: "Kinetous Inventory MGMT",
-    database: drizzleAdapter(db, {
-        provider: "pg",
-        schema,
-    }),
-    emailAndPassword: {
-        enabled: true,
-        requireEmailVerification: true,
+  trustedOrigins: ["https://*.kinetous.com", "https://kinetous.com"],
+  appName: "Kinetous",
+  database: drizzleAdapter(db, {
+    provider: "pg",
+    schema,
+  }),
+  emailAndPassword: {
+    enabled: true,
+    requireEmailVerification: true,
+  },
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRETE!,
     },
-    socialProviders: {
-        google: {
-            clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRETE!,
-        },
-        github: {
-            clientId: process.env.GITHUB_CLIENT_ID!,
-            clientSecret: process.env.GITHUB_CLIENT_SECRETE!,
-        },
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRETE!,
     },
-    emailVerification: {
-        sendOnSignUp: true,
-        sendVerificationEmail: async ({ user, url }) => {
-            await mail.emails.send({
-                from: "Kinetous <auth@kinetous.com>",
-                to: user.email,
-                subject: "Verify Your Kinetous Account Email",
-                html: `
+  },
+  emailVerification: {
+    sendOnSignUp: true,
+    sendVerificationEmail: async ({ user, url }) => {
+      await mail.emails.send({
+        from: "Kinetous <auth@kinetous.com>",
+        to: user.email,
+        subject: "Verify Your Kinetous Account Email",
+        html: `
                     <div
                         style="
                     display: none;
@@ -455,8 +455,8 @@ export const auth = betterAuth({
                         </tr>
                     </table>
                 `,
-            });
-        },
-        autoSignInAfterVerification: true,
+      });
     },
+    autoSignInAfterVerification: true,
+  },
 });

@@ -12,6 +12,7 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo-config";
+import BackButton from "../components/back-button";
 
 type BlogIndexSearchParams = { page?: string; tag?: string };
 
@@ -57,7 +58,6 @@ export default async function BlogIndex({
 }) {
   const { page: pageParam, tag } = await searchParams;
   const page = Number(pageParam ?? 1) || 1;
-
   const [{ posts, totalPages }, tags] = await Promise.all([
     getPublishedPosts({ page, tag }),
     getAllTags(),
@@ -108,6 +108,7 @@ export default async function BlogIndex({
       <StructuredData data={blogSchema} id="ld-blog" />
       <StructuredData data={breadcrumbSchema} id="ld-breadcrumb" />
       <header className="mb-12 space-y-4">
+        <BackButton></BackButton>
         <h1 className="text-5xl font-bold tracking-tight">Blog</h1>
         <TagFilter tags={tags} />
       </header>

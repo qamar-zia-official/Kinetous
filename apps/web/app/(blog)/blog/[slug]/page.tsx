@@ -14,16 +14,17 @@ import {
   absoluteUrl,
   cloudinaryOgImageUrl,
 } from "@/lib/seo-config";
+import BackButton from "../../components/back-button";
 
 type BlogContent = Parameters<typeof BlogBody>[0]["content"];
 
 function parseBody(body: string | null): BlogContent {
-    if (!body) return { type: "doc", content: [] };
-    try {
-        return JSON.parse(body) as BlogContent;
-    } catch {
-        return { type: "doc", content: [] };
-    }
+  if (!body) return { type: "doc", content: [] };
+  try {
+    return JSON.parse(body) as BlogContent;
+  } catch {
+    return { type: "doc", content: [] };
+  }
 }
 
 function coverPublicId(coverImage: string | null): string | null {
@@ -170,6 +171,7 @@ export default async function BlogPost({
       <StructuredData data={articleSchema} id="ld-article" />
       <StructuredData data={breadcrumbSchema} id="ld-breadcrumb" />
       <header className="mx-auto max-w-3xl space-y-6 text-center">
+        <BackButton></BackButton>
         <div className="flex flex-wrap justify-center gap-2">
           {post.tags?.map((tag) => (
             <Badge key={tag} variant="secondary" className="rounded-full">

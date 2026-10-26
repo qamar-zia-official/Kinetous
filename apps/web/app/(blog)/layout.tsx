@@ -1,5 +1,3 @@
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@repo/ui/button";
 import type { Metadata } from "next";
 import { DEFAULT_DESCRIPTION } from "@/lib/seo-config";
 
@@ -19,11 +17,6 @@ export default function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <main className="max-w-300 m-auto">
-      <div className="p-4">
-        <Button>
-          <ArrowLeft /> Back to Blog
-        </Button>
-      </div>
       <div className="m-auto flex flex-col justify-center items-center">
         {children}
       </div>
