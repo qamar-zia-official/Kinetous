@@ -57,7 +57,7 @@ export function ArticleMetaForm({ defaultValues, onChange }: ArticleMetaFormProp
           <Controller
             name="title"
             control={control}
-            render={({ field }) => <Textarea placeholder="Article title" {...field} style={{fontSize: "4rem"}} className="w-full bg-transparent border-0 outline-0 h-fit rounded-none col-span-2 text-7xl font-bold" />}
+            render={({ field }) => <Textarea placeholder="Article title" {...field} style={{fontSize: "clamp(2rem, 6vw, 4rem)"}} className="w-full bg-transparent border-0 outline-0 h-fit rounded-none col-span-2 font-bold" />}
           />
         </Field>
 

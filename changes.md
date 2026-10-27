@@ -279,3 +279,35 @@ Affected: `apps/blog/app/(blog)/posts/[slug]/page.tsx`, `apps/web/app/(blog)/blo
 - `apps/blog` is a nested git repository (`apps/blog/.git`); the parent repo tracks none of its
   files. Committing the monorepo will not include blog changes until this is resolved (remove the
   nested `.git` and add the files, or convert it to a submodule).
+
+---
+
+## 2026-10-26 — Responsive adjustments across marketing, blog, account, and editor screens
+
+### Summary
+
+Kept the existing design and fixed remaining responsive failure points where content could overflow,
+clip, collide, or become unreadable on small and mid-sized viewports. Existing uncommitted changes
+were preserved. See [`CHANGES.md`](./CHANGES.md) for the focused list.
+
+### What changed
+
+- Portfolio carousel: tech-stack pills wrap and shrink; fixed controls are centered, capped to the
+  viewport, and moved above the chat widget on phones.
+- Portfolio and process dialogs: `800px` minimum width moved from `md` to `lg`; dialogs gained
+  viewport-height limits and vertical scrolling.
+- Blog index/post headings in both apps now use responsive text sizes.
+- Footer: mobile padding and grid gaps reduced; legal links wrap.
+- Blog cards: tag groups wrap; pagination wraps and centers.
+- Account signup in both apps: `h-screen` replaced with `min-h-screen` plus padding; errors stack
+  below the card.
+- Publish editor: responsive page padding, fluid title size (`clamp`), and a viewport-capped
+  toolbar.
+- Experiments heading made responsive.
+
+### Verification
+
+- `bun run typecheck` passes (6/6 tasks) after removing stale `apps/blog/.next` generated types.
+- `bun run lint` passes (6/6 tasks, 0 errors; pre-existing warnings only).
+- `bun run build` succeeds for both apps.
+- No browser automation was available; verification was static plus typecheck, lint, and builds.

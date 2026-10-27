@@ -85,9 +85,9 @@ const Footer2 = (props: Props) => {
 
     return (
         <section className={cn("py-12", className)}>
-            <Card className="container mx-auto p-12 rounded-2xl bg-zinc-850">
+            <Card className="container mx-auto rounded-2xl bg-zinc-850 p-6 sm:p-10 lg:p-12">
                 <footer>
-                    <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
+                    <div className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-6">
                         <div className="col-span-2 mb-8 lg:mb-0">
                             <div className="flex items-center lg:justify-start">
                                 <a href={logo?.url}>
@@ -123,7 +123,7 @@ const Footer2 = (props: Props) => {
                     </div>
                     <div className="mt-8 flex flex-col justify-between gap-4 border-t border-border pt-8 text-xs font-medium text-muted-foreground md:flex-row md:items-center">
                         <p>{copyright}</p>
-                        <ul className="flex gap-4">
+                        <ul className="flex flex-wrap gap-x-4 gap-y-2">
                             {legalLinks?.map((link, linkIdx) => (
                                 <li
                                     key={linkIdx}

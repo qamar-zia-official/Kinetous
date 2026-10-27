@@ -42,7 +42,7 @@ export default function Port1() {
     >
       {inView && (
         <AnimatePresence>
-          <motion.div className="bg-zinc-800/50 backdrop-blur-2xl backdrop-brightness-150 backdrop-saturate-150 rounded-full p-4 w-max flex gap-2 justify-center items-center fixed bottom-4 mx-auto mt-2 z-100 ">
+          <motion.div className="bg-zinc-800/50 backdrop-blur-2xl backdrop-brightness-150 backdrop-saturate-150 rounded-full p-4 w-max max-w-[calc(100vw-2rem)] flex gap-2 justify-center items-center fixed bottom-24 left-1/2 -translate-x-1/2 mt-2 z-100 sm:bottom-4">
             <Button
               size="icon"
               variant="outline"
@@ -106,12 +106,12 @@ export default function Port1() {
                     <CardDescription className="text-zinc-400 text-sm pb-6">
                       {item.description}
                     </CardDescription>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {item.techStack.map((item, idx) => {
                         return (
                           <div
                             key={idx}
-                            className="flex gap-1 justify-center items-center bg-blue-600/70 border border-blue-600 py-1 px-2 rounded-full"
+                            className="flex gap-1 items-center justify-center rounded-full border border-blue-600 bg-blue-600/70 px-2 py-1 text-xs sm:text-sm"
                           >
                             <item.icon />
                             {item.name}

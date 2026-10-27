@@ -175,9 +175,7 @@
 
 .reveal-up {
   opacity: 0;
-
   transform: translateY(24px);
-
   transition:
     opacity 0.6s ease,
     transform 0.6s ease;
@@ -496,5 +494,107 @@ html::-webkit-scrollbar-thumb:hover {
 details {
   summary {
     cursor: pointer;
+  }
+}
+/*
+Get Smooth
+*/
+
+:root {
+  /* Motion curves */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-interactive: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Duration scale */
+  --duration-fast: 120ms;
+  --duration-normal: 180ms;
+  --duration-smooth: 240ms;
+  --duration-enter: 320ms;
+
+  /* Reusable transition */
+  --transition-interactive:
+    color var(--duration-normal) var(--ease-standard),
+    background-color var(--duration-normal) var(--ease-standard),
+    border-color var(--duration-normal) var(--ease-standard),
+    box-shadow var(--duration-normal) var(--ease-standard),
+    opacity var(--duration-normal) var(--ease-standard),
+    transform var(--duration-normal) var(--ease-interactive),
+    outline-color var(--duration-normal) var(--ease-standard);
+}
+
+/* Interactive controls */
+:where(
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  summary,
+  [role="button"],
+  [role="tab"],
+  [role="menuitem"],
+  [data-interactive]
+) {
+  transition: var(--transition-interactive);
+}
+
+/* Tactile button feedback */
+:where(button, [role="button"], [data-interactive]):active {
+  transform: scale(0.98);
+}
+
+/* Smooth hover lift for elements explicitly designed as cards */
+@media (hover: hover) and (pointer: fine) {
+  [data-hover-lift]:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Clear, accessible keyboard focus */
+:where(
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  [role="tab"],
+  [data-interactive]
+):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-smooth: 0ms;
+    --duration-enter: 0ms;
+  }
+
+  :where(
+    button,
+    a,
+    input,
+    textarea,
+    select,
+    summary,
+    [role="button"],
+    [role="tab"],
+    [role="menuitem"],
+    [data-interactive]
+  ) {
+    transition: none;
+  }
+
+  :where(button, [role="button"], [data-interactive]):active {
+    transform: none;
+  }
+
+  [data-hover-lift]:hover {
+    transform: none;
   }
 }

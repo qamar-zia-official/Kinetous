@@ -171,16 +171,9 @@ export default async function BlogPost({
       <StructuredData data={articleSchema} id="ld-article" />
       <StructuredData data={breadcrumbSchema} id="ld-breadcrumb" />
       <header className="mx-auto max-w-3xl space-y-6 text-center">
-        <BackButton></BackButton>
-        <div className="flex flex-wrap justify-center gap-2">
-          {post.tags?.map((tag) => (
-            <Badge key={tag} variant="secondary" className="rounded-full">
-              {tag}
-            </Badge>
-          ))}
+        <div className="w-full flex">
+          <BackButton></BackButton>
         </div>
-        <h1 className="text-5xl font-bold tracking-tight">{post.title}</h1>
-        <p className="text-lg text-muted-foreground">{post.excerpt}</p>
         <div className="flex justify-center gap-3 text-sm text-muted-foreground">
           {post.publishedAt && (
             <time dateTime={new Date(post.publishedAt).toISOString()}>
@@ -191,6 +184,21 @@ export default async function BlogPost({
               })}
             </time>
           )}
+        </div>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          {post.title}
+        </h1>
+        <p className="text-lg text-muted-foreground">{post.excerpt}</p>
+        <div className="flex flex-wrap justify-center gap-2">
+          {post.tags?.map((tag) => (
+            <Badge
+              key={tag}
+              variant="secondary"
+              className="rounded-full text-neutral-400"
+            >
+              {tag}
+            </Badge>
+          ))}
         </div>
       </header>
 

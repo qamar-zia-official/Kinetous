@@ -104,12 +104,12 @@ export default async function BlogIndex({
   };
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
+    <section className="mx-auto max-w-6xl px-6">
       <StructuredData data={blogSchema} id="ld-blog" />
       <StructuredData data={breadcrumbSchema} id="ld-breadcrumb" />
       <header className="mb-12 space-y-4">
         <BackButton></BackButton>
-        <h1 className="text-5xl font-bold tracking-tight">Blog</h1>
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Blog</h1>
         <TagFilter tags={tags} />
       </header>
 

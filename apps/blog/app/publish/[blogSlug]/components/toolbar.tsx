@@ -43,7 +43,7 @@ export default function Toolbar({
         return () => document.removeEventListener("keydown", handleKeyDown);
     }, [editor]);
     return (
-        <TLB.Root className="flex z-100 h-14  backdrop-brightness-200 items-center gap-1 overflow-x-auto border-b bg-zinc/80 px-3 backdrop-blur-xl w-fit rounded-full box-shadow-2xl">
+        <TLB.Root className="flex z-100 h-14 max-w-[calc(100vw-2rem)] backdrop-brightness-200 items-center gap-1 overflow-x-auto border-b bg-zinc/80 px-3 backdrop-blur-xl w-fit rounded-full box-shadow-2xl">
             <TLB.Group>
                 <ButtonGroup>
                     <TLB.Button

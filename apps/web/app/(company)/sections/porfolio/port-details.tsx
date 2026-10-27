@@ -25,11 +25,14 @@ export default function PortDetails({ details }: { details: string }) {
             {"See more"}
           </p>
         </DialogTrigger>
-        <DialogContent className="max-w-[90vw] md:min-w-200" role="dialog">
+        <DialogContent
+          className="max-h-[85vh] max-w-[90vw] overflow-y-auto lg:min-w-200"
+          role="dialog"
+        >
           <DialogHeader>
             <DialogTitle>Details</DialogTitle>
           </DialogHeader>
-          <div className="prose dark:prose-invert max-h-[70vh] overflow-y-scroll max-w-[90vw]">
+          <div className="prose dark:prose-invert max-h-[70vh] max-w-[90vw] overflow-y-auto">
             <ReactMarkdown>{details}</ReactMarkdown>
           </div>
         </DialogContent>

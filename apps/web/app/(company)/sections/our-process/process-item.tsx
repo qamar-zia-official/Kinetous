@@ -59,7 +59,7 @@ export const ProcessItem = ({ i, index }: Props) => {
                         <div className={bottomHighlightCn} />
                     </Card>
                 </DialogTrigger>
-                <DialogContent className="md:min-w-200">
+                <DialogContent className="max-h-[85vh] overflow-y-auto lg:min-w-200">
                     <DialogHeader>
                         <div className="flex">{i.image}</div>
                     </DialogHeader>

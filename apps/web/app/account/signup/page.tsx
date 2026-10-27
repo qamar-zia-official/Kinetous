@@ -69,7 +69,7 @@ export default function Page() {
     }
 
     return (
-        <main className="h-screen flex justify-center items-center px-4">
+        <main className="flex min-h-screen flex-col items-center justify-center gap-4 px-4 py-10">
             <Card className="w-full max-w-sm">
                 <CardHeader>
                     <CardTitle>Sign up</CardTitle>

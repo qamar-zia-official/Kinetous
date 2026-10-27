@@ -63,7 +63,7 @@ export function BlogCard({
           )}
           <span>·</span>
           <span>{minutes} min read</span>
-          <div className="ml-auto flex gap-1.5">
+          <div className="ml-auto flex max-w-full flex-wrap gap-1.5">
             {post.tags?.slice(0, 2).map((tag) => (
               <Badge key={tag} variant="secondary" className="rounded-full">
                 {tag}

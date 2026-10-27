@@ -161,7 +161,9 @@ export default async function BlogPost({
                         </Badge>
                     ))}
                 </div>
-                <h1 className="text-5xl font-bold tracking-tight">{post.title}</h1>
+                <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+                    {post.title}
+                </h1>
                 <p className="text-lg text-muted-foreground">{post.excerpt}</p>
                 <div className="flex justify-center gap-3 text-sm text-muted-foreground">
                     {post.publishedAt && (

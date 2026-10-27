@@ -8,6 +8,7 @@ export default function BackButton() {
   return (
     <div>
       <Button
+        variant={"ghost"}
         onClick={() => {
           router.back();
         }}

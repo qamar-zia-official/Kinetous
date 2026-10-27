@@ -330,7 +330,7 @@ export default function Editor({
             </div>
 
             <div className="flex-1">
-                <div className="mx-auto w-full min-h-screen max-w-195 px-12 py-16">
+                <div className="mx-auto w-full min-h-screen max-w-195 px-4 py-10 sm:px-8 sm:py-16 lg:px-12">
                     <EditorContent editor={editor} />
                 </div>
             </div>

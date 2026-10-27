@@ -94,7 +94,7 @@ export default async function BlogIndex({
             <StructuredData data={blogSchema} id="ld-blog" />
             <StructuredData data={breadcrumbSchema} id="ld-breadcrumb" />
             <header className="mb-12 space-y-4">
-                <h1 className="text-5xl font-bold tracking-tight">Blog</h1>
+                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Blog</h1>
                 <TagFilter tags={tags} />
             </header>
 

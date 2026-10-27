@@ -25,7 +25,7 @@ export function BlogPagination({ page, totalPages }: { page: number; totalPages:
 
   return (
     <Pagination>
-      <PaginationContent>
+      <PaginationContent className="flex-wrap justify-center">
         <PaginationItem>
           <PaginationPrevious
             href="#"

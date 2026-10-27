@@ -29,12 +29,6 @@ export const links: linkType[] = [
     drop: false,
   },
   {
-    label: "About",
-    link: "/about",
-    icon: HomeIcon,
-    drop: false,
-  },
-  {
     label: "Case Studies",
     link: "/case-studies",
     icon: Briefcase,
@@ -50,12 +44,6 @@ export const links: linkType[] = [
     label: "Blog",
     link: "/blog",
     icon: FaBlog,
-    drop: false,
-  },
-  {
-    label: "Contact",
-    link: "/contact",
-    icon: Contact,
     drop: false,
   },
   {
